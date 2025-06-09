@@ -1,0 +1,67 @@
+@import "../../../shared/color.scss";
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;  /* Align buttons to the right */
+    gap: 8px;  /* Optional: Add some space between the buttons */
+  }
+
+  .assignDevice-form .form-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 44px; /* Optional: Adjust the space between the form fields */
+  }
+
+  .assignDevice-form .form-container1 {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 44px; /* Optional: Adjust the space between the form fields */
+  }
+
+  ::ng-deep .mdc-text-field {
+    padding: 0px!important;
+  }
+  
+
+  .mat-mdc-outlined-button{
+    --mdc-outlined-button-outline-width: 1px;
+    --mdc-outlined-button-container-shape: 0px;
+    color: $color6 !important;
+    border-color: $color6 !important;
+  }
+
+/* Keeps the search input fixed */
+.search-container {
+  display: flex;
+  align-items: center;
+  padding-left: 6px;
+  background-color: white; /* Set background color */
+  z-index: 1; /* Keep it above the options list */
+  padding-bottom: 2px;
+  
+  input{
+    padding-left: 8px;
+  }
+}
+
+/* Add scrolling only to the options list */
+.mat-select-panel {
+  padding-top: 0 !important; /* Remove default padding at the top */
+}
+
+.mat-select-scroll-container {
+  max-height: 200px; /* Set the height you want for the scrollable list */
+  overflow-y: auto; /* Enable scrolling for the options only */
+}
+
+.user-option {
+  display: flex;
+  flex-direction: column; /* Stack name and email vertically */
+  line-height: 1.2; /* Reduce line height to decrease space between lines */
+}
+
+.email-text {
+  font-size: 12px; /* Smaller font size */
+  color: gray; /* Gray color */
+  margin-top: 2px; /* Add a small space between name and email */
+}

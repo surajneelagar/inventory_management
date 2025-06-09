@@ -1,0 +1,96 @@
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Optional: Adds a shadow for visibility */
+}
+
+mat-toolbar-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logo-img img{
+  width: auto;
+  margin-top: 6px;
+  margin-left: 0px;
+  height: 30px;
+}
+
+/* Styles for the name container (buttons) */
+.name-container {
+  margin-left: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.header-btn {
+  cursor: pointer;
+  padding: 0 10px; /* Horizontal padding */
+  height: 54px; /* Set height to 60px */
+  display: flex;
+  align-items: center; /* Vertically center the text inside each button */
+  justify-content: center; /* Optional: center the text horizontally if needed */
+}
+
+.header-btn.active {
+  background-color: #db135b; /* Active background color */
+  color: white;
+}
+
+
+/* Spacer to push search and menu to the right */
+.example-spacer {
+  flex-grow: 1;
+}
+
+/* Styles for the search bar (inside toolbar) */
+.scarch {
+  display: flex;
+  margin-left: 4pc;
+  align-items: center;
+  background: white;
+  border-radius: 25px;
+  padding: 4px;
+  border: 1px solid #ccc;
+  width: 28pc;  /* Adjust the width of the search box */
+}
+
+.scarch .mat-icon {
+  margin-right: 8px; /* Space between icon and input */
+  color: gray;
+}
+
+.scarch .search-input {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  height: 100%;
+  font-size: 14px;
+}
+
+/* Styles for the user icon */
+.example-icon {
+  padding: 0 14px;
+}
+
+/* Styles for the menu (Quick Action) */
+.header-btn {
+  cursor: pointer;
+  font-weight: 300;
+}
+
+mat-menu {
+  position: absolute;
+  z-index: 1001; /* Ensure menu is on top of other elements */
+}
+
+/* Ensure content below toolbar is not overlapped */
+.page-content {
+  margin-top: 64px; /* Adjust according to toolbar height */
+}

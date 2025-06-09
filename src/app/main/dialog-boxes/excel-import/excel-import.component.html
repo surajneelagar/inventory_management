@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Upload Excel</h1>
+
+<div mat-dialog-content>
+  <div>
+    <div 
+      class="drop-area" 
+      (dragover)="onDragOver($event)" 
+      (drop)="onDrop($event)" 
+      (click)="fileInput.click()">
+      <mat-icon class="drop-area__icon">cloud_upload</mat-icon>
+      <p>Click or Drag file to this area to upload</p>
+    </div>
+
+    <!-- Hidden file input -->
+    <input #fileInput type="file" accept=".xlsx" style="display: none" (change)="onFileSelected($event)" />
+
+    <p>.xlsx format is accepted only</p>
+  </div>
+
+  <div *ngIf="selectedFile">
+    <h3>Selected File:</h3>
+    <p><strong>File Name:</strong> {{ selectedFile.name }}</p>
+    <p><strong>File Size:</strong> {{ selectedFile.size / 1024 | number: '1.0-0' }} KB</p>
+  </div>
+
+  <div>
+    <p>If you do not have a file you can use the sample below.</p>
+    <button mat-flat-button class="downloadBtn" (click)="downloadSampleTemplate()">
+      <mat-icon>description</mat-icon> 
+      Download Sample Template
+    </button>
+  </div>
+</div>
+
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-stroked-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button color="primary" [disabled]="!selectedFile" (click)="onContinue()">Continue</button>
+</div>

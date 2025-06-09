@@ -1,0 +1,84 @@
+<div>
+  <div class="top-container">
+    <div class="left">
+      <h2>All Inventory</h2>
+    </div>
+    <div class="right">
+      <button mat-flat-button color="primary">Export Excel</button>
+      <button mat-flat-button color="primary" (click)="openImportDialog()">Import Excel</button>
+      <button mat-flat-button color="primary" (click)="openAddDialog()">Add Inventory</button>
+    </div>
+  </div>
+  <div class="bottom-container">
+    <!-- <div class="scarch">
+      <mat-icon class="mat-icons" matSuffix>search</mat-icon>
+      <input placeholder="Search by Serial Number/Purchase Date/Status" type="search" class="search-input" input matInput [formControl]="searchQuaryInventory" />
+    </div> -->
+    <div class="btn-styling">
+      <button mat-stroked-button color="primary" (click)="onButtonClick(ButtonIndex.AllDevices)" [ngClass]="{'selected': selectedIndex === ButtonIndex.AllDevices}">All Devices</button>
+      <button mat-stroked-button color="primary" (click)="onButtonClick(ButtonIndex.Active)" [ngClass]="{'selected': selectedIndex === ButtonIndex.Active}">Active</button>
+      <button mat-stroked-button color="primary" (click)="onButtonClick(ButtonIndex.InTransit)" [ngClass]="{'selected': selectedIndex === ButtonIndex.InTransit}">In Transit</button>
+      <button mat-stroked-button color="primary" (click)="onButtonClick(ButtonIndex.Stock)" [ngClass]="{'selected': selectedIndex === ButtonIndex.Stock}">Stock</button>
+      <button mat-stroked-button color="primary" (click)="onButtonClick(ButtonIndex.OutOfWarranty)" [ngClass]="{'selected': selectedIndex === ButtonIndex.OutOfWarranty}">Out of Warranty</button>
+      <button mat-stroked-button color="primary" (click)="onButtonClick(ButtonIndex.NonCompliant)" [ngClass]="{'selected': selectedIndex === ButtonIndex.NonCompliant}">Non Compliant</button>
+      <button mat-stroked-button color="primary" (click)="onButtonClick(ButtonIndex.Returnable)" [ngClass]="{'selected': selectedIndex === ButtonIndex.Returnable}">Returnable</button>
+      <button mat-stroked-button color="primary" (click)="onButtonClick(ButtonIndex.Recalled)" [ngClass]="{'selected': selectedIndex === ButtonIndex.Recalled}">Recalled</button>
+      <button mat-stroked-button color="primary" (click)="onButtonClick(ButtonIndex.OffBoarding)" [ngClass]="{'selected': selectedIndex === ButtonIndex.OffBoarding}">Off Boarding</button>
+      <!-- <button mat-stroked-button color="primary" (click)="onButtonClick(ButtonIndex.Ordered)" [ngClass]="{'selected': selectedIndex === ButtonIndex.Ordered}">Ordered</button> -->
+    </div>
+    
+  </div>
+</div>
+
+
+<div class="table-container" (scroll)="onInventoryTableScroll($event)">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+    <!-- Loop through the columns dynamically -->
+    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="headerSty">
+          {{ displayNameMapping[column] || column }}
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="isDateColumn(element[column]); else defaultCell">
+          <div class="headerSty">
+            {{element[column] | date: 'MM/dd/yyyy'}}
+          </div>
+        </ng-container>
+        <ng-template #defaultCell>
+          <div class="headerSty">
+            {{element[column]}}
+          </div>
+        </ng-template>
+      </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="actions" stickyEnd>
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element" class="center-align">
+        <mat-icon [matMenuTriggerFor]="afterMenu">more_vert</mat-icon>
+        <mat-menu #afterMenu="matMenu" xPosition="after">
+          <button *ngIf="element.status !== 'Assigned'" mat-menu-item (click)="openAssignInventoryDialog(element)">
+            Assign Inventory
+          </button>          
+          <button mat-menu-item *ngIf="showMarkReturnableButton" (click)="openMarkReturnableDialog(element)">Mark as Returnable</button>
+          <button mat-menu-item *ngIf="showChangeStatusButton" (click)="openChangeStatusDialog(element)">Change Status</button>
+          <button mat-menu-item *ngIf="showDeviceHistoryButton" (click)="openDeviceHistory(element.serialNumber, true)">Devices History</button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <!-- Check if data is available -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsWithActions; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsWithActions;"></tr>
+
+  </table>
+
+  <!-- Show 'No Data Found' message if no data is available -->
+  <div *ngIf="dataSource.data.length === 0" class="no-data-message">
+    No Data Found
+  </div>
+</div>

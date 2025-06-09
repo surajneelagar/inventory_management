@@ -1,0 +1,184 @@
+@import "../../shared/color.scss";
+
+:host {
+  display: block;
+  padding: var(--toolbar-height, 65px) 5px 5px; /* Uses the variable for the top padding, and 20px for others */
+}
+
+.top-container{
+  width: 64%; 
+  float: left;
+}
+
+.bottom-container{
+  width: 35%; 
+  float: right;
+}
+
+
+  .card-lable {
+    display: flex;
+    flex-wrap: wrap;  // This ensures that if there's not enough space, the cards will wrap to the next line
+    gap: 0px;  // Space between cards
+    justify-content: space-between;  // Align cards to the left (or center if needed)
+  }
+  
+  .card {
+    width: 160px;  // Set a fixed width for the cards
+    margin: 4px 0;  // Optional, add margin if needed for spacing
+    align-items: center;
+    color: $color2;
+  }
+
+  .mat-mdc-card-header{
+    padding: 0px;
+  }
+  .mat-mdc-card-content:first-child{
+    padding-top: 8px;
+  }
+  
+  .left-table-container {
+    height: calc(80vh - 100px); /* Adjust by subtracting the space taken by the header and footer */
+    overflow: auto; /* Enables scrolling */
+    border-radius: 0px;
+    margin-top: -10px;
+    // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.15);
+    box-shadow: $box-shadow4;
+
+  }
+
+  .bottom-container{
+    .top-content {
+      h2{
+        color: $color1;
+      }
+      display: flex;
+      justify-content: space-between;
+      box-shadow: $box-shadow3;
+      padding: 10px 10px 0px 10px;
+    }
+    .right-table-container {
+      height: calc(92vh - 100px); /* Adjust by subtracting the space taken by the header and footer */
+      overflow: auto; /* Enables scrolling */
+      border-radius: 0px;
+      // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.15);
+      box-shadow: $box-shadow4;
+
+      .mat-mdc-header-cell{
+        width: 0px;
+      }
+    }
+  }
+
+  .scarch {
+    display: flex;
+    align-items: center;
+    background: $color2;
+    border-radius: 25px;
+    padding: 8px;
+    border: 1px solid $color4;
+    width: 14pc;
+    height: 14px;
+  }
+  
+  .scarch .mat-icon {
+    margin-right: 8px; /* Space between icon and input */
+    color: gray;
+  }
+  
+  .scarch .search-input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    height: 100%;
+    font-size: 12px;
+  }
+  
+.mid-container{
+  h2{
+    color: $color1;
+  }
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-shadow: $box-shadow3;
+}
+
+.SerialNo{
+  cursor: pointer;
+  color: $color1;
+  // text-decoration: underline;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+  
+}
+
+.expand-content {
+  display: flex;
+  flex-direction: row;
+  gap: 20px; /* Optional: Adds space between the input sections */
+  padding-top: 10px;
+}
+.expand-user-content{
+  // padding: 5px;
+  display: flex;
+  gap: 50px;
+  th {
+    padding: 5px;
+    width: 114px;
+    background-color: #F5F5F5;
+    color: $color1;
+    font-weight: 550;
+  }
+  td{
+    border-bottom: 1px solid $color4;
+    padding: 5px;
+  }
+
+}
+
+.expand-content div {
+  display: flex;
+  flex-direction: column;
+}
+
+.contents label {
+  margin-bottom: 2px;
+  color: $color5;
+  font-weight: 500;
+}
+
+.contents p{
+  min-width: 180px; /* Minimum width */
+  max-width: 214px; /* Maximum width */
+  border-bottom: 1.5px $color4 solid;
+  padding: 2px;
+  height: 22px;
+  white-space: nowrap; /* Prevents text from wrapping */
+  overflow: hidden; /* Hides overflow text */
+  text-overflow: ellipsis; /* Adds an ellipsis (...) if text overflows */
+}
+
+ 

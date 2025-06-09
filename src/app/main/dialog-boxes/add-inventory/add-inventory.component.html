@@ -1,0 +1,149 @@
+<div class="header-content">
+  <h2 mat-dialog-title>Add New Inventory</h2>
+  @if(!!previousData) {
+    <p (click)="autofillForm()">Autofill from Previous Entry</p>
+
+  }
+</div>
+
+<div mat-dialog-content>
+  <form [formGroup]="inventoryForm" class="inventory-form">
+    <!-- First Section -->
+    <div class="form-container">
+      <mat-form-field class="mat-field">
+        <mat-label>Serial Number</mat-label>
+        <input matInput formControlName="serialNumber" />
+        @if(inventoryForm.get('serialNumber')?.hasError('required') &&
+        inventoryForm.get('serialNumber')?.touched){
+        <mat-error> Serial Number is required </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="mat-field">
+        <mat-label>Purchase Date</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="purchaseDate">
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+        @if(inventoryForm.get('purchaseDate')?.hasError('required') &&
+        inventoryForm.get('purchaseDate')?.touched){
+        <mat-error> Purchase Date is required </mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Delivery Date</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="deliveryDate">
+        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+        @if(inventoryForm.get('deliveryDate')?.hasError('required') &&
+        inventoryForm.get('deliveryDate')?.touched){
+        <mat-error>Delivery date is required </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="mat-field">
+        <mat-label>Last Physical Inventory</mat-label>
+        <input matInput [matDatepicker]="lastPhysicalPicker" formControlName="lastPhysicalInventory">
+        <mat-datepicker-toggle matIconSuffix [for]="lastPhysicalPicker"></mat-datepicker-toggle>
+        <mat-datepicker #lastPhysicalPicker></mat-datepicker>
+        @if(inventoryForm.get('lastPhysicalInventory')?.hasError('required') &&
+        inventoryForm.get('lastPhysicalInventory')?.touched){
+        <mat-error> Last physical inventory is required </mat-error>
+        }
+      </mat-form-field>
+
+
+    </div>
+
+    <!-- Second Section -->
+    <div class="form-container">
+      <mat-form-field class="mat-field">
+        <mat-label>Warranty Till</mat-label>
+        <input matInput [matDatepicker]="picker4" formControlName="warrantyTill">
+        <mat-datepicker-toggle matIconSuffix [for]="picker4"></mat-datepicker-toggle>
+        <mat-datepicker #picker4></mat-datepicker>
+        @if(inventoryForm.get('warrantyTill')?.hasError('required') &&
+        inventoryForm.get('warrantyTill')?.touched){
+        <mat-error>Warranty till is required </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="mat-field">
+        <mat-label>Order Number</mat-label>
+        <input matInput formControlName="orderNumber" />
+        @if(inventoryForm.get('orderNumber')?.hasError('required') &&
+        inventoryForm.get('orderNumber')?.touched){
+        <mat-error> Manufacturer ID is required </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="mat-field">
+        <mat-label>Manf ID</mat-label>
+        <input matInput formControlName="manfId" />
+        @if(inventoryForm.get('manfId')?.hasError('required') &&
+        inventoryForm.get('manfId')?.touched){
+        <mat-error> Manufacturer ID is required </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="mat-field">
+        <mat-label>Model</mat-label>
+        <mat-select formControlName="model">
+          <mat-option *ngFor="let model of modelOptions" [value]="model">{{ model }}</mat-option>
+        </mat-select>
+        @if(inventoryForm.get('model')?.hasError('required') &&
+        inventoryForm.get('model')?.touched){
+        <mat-error> Model is required </mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <!-- Third Section -->
+    <div class="form-container">
+      <mat-form-field class="mat-field">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option *ngFor="let status of statusOptions" [value]="status">{{ status }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="inventoryForm.get('status')?.hasError('required') && inventoryForm.get('status')?.touched">
+          Status is required
+        </mat-error>
+      </mat-form-field>
+      
+
+      <mat-form-field class="mat-field">
+        <mat-label>Device Type</mat-label>
+        <mat-select formControlName="deviceType">
+          <mat-option *ngFor="let deviceType of deviceTypeOptions" [value]="deviceType">{{ deviceType }}</mat-option>
+        </mat-select>
+        @if(inventoryForm.get('deviceType')?.hasError('required') &&
+        inventoryForm.get('deviceType')?.touched){
+        <mat-error> Device Type is required </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="mat-field">
+        <mat-label>Location</mat-label>
+        <mat-select formControlName="location">
+          <mat-option *ngFor="let location of locationOptions" [value]="location">{{ location }}</mat-option>
+        </mat-select>
+        @if(inventoryForm.get('location')?.hasError('required') &&
+        inventoryForm.get('location')?.touched){
+        <mat-error> Location Type is required </mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+
+    <!-- Upload Excel Section -->
+    <div class="form-container">
+      <p (click)="OpenExcelImport()">Upload Excel to add inventory</p>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-stroked-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button color="primary" [disabled]="!inventoryForm.valid" (click)="onClickSave()">
+    Save
+  </button>
+</div>

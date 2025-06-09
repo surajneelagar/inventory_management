@@ -1,0 +1,101 @@
+@import "../../../shared/color.scss";
+
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;  /* Align buttons to the right */
+    gap: 8px;  /* Optional: Add some space between the buttons */
+  }
+  .top-content {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+  }
+  .example-card {
+    width: 270px !important;
+    margin-bottom: 8px;
+    box-shadow: $box-shadow1;
+    mat-card-content{
+      strong,p{
+        margin-bottom: -5px;
+        font-size: 14px;
+      }
+      strong{
+        color: $color1;
+      }
+    }
+  }
+  
+  .button-content div {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Center the image and text */
+    justify-content: space-between;
+  }
+  /* Add spacing between each status item */
+.status-item {
+  margin-bottom: 30px;  /* Space between the status items */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+  .button-content{
+    padding: 20px 20px 0px;
+  }
+
+  .mat-mdc-outlined-button{
+    --mdc-outlined-button-outline-width: 1px;
+    --mdc-outlined-button-container-shape: 0px;
+    color: $color6 !important;
+    border-color: $color6 !important;
+  }
+
+  .rounded-circle-image {
+    width: 30px;  /* Set the size of the circle */
+    height: 30px; /* Set the size of the circle */
+    border-radius: 50%;  /* Makes the div a circle */
+    border: 5px solid $color1;  /* Blue border around the circle */
+    background-color: $color1;  /* Optional: background color inside the circle */
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    overflow: hidden;  /* Prevents overflow of the image outside the circle */
+  }
+  
+  .rounded-circle-image img {
+    width: 20px;  /* Adjust the size of the image inside the circle */
+    height: 20px; /* Ensure the image maintains the aspect ratio */
+    object-fit: contain;  /* Makes sure the whole image fits inside the circle without distortion */
+    border: 5px solid $color1;  /* Blue border around the circle */
+    background-color: $color1; 
+  }
+  
+  .status-name{
+    margin: 0px;
+    color: $color1;
+  }
+
+
+  .timestamp{
+    margin: 0px;
+  }
+
+  .trackerStyle {
+    display: flex;
+    align-items: center; /* Vertically align the items */
+    gap: 16px; /* Add space between the input field and the button */
+  }
+
+  .trackerBtn{
+    background-color: $color1 !important;
+    color: $color2 !important;
+  }
+
+  /* Prevent the label from floating when the input is readonly */
+.mat-form-field[floatLabel="auto"] .mat-form-field-label {
+  transform: none !important;
+  top: 0 !important;
+  font-size: 16px !important;
+  color: rgba(0, 0, 0, 0.54) !important;
+}

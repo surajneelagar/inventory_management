@@ -1,0 +1,51 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use "@angular/material" as mat;
+@import "./styles/variables";
+@import "./styles/override-material";
+@import "../src/app/shared/color.scss";
+@include mat.core();
+$my-primary: mat.define-palette($m2-primary);
+$my-accent: mat.define-palette($m2-accent);
+$my-error: mat.define-palette($m2-error);
+
+// The "warn" palette is optional and defaults to red if not specified.
+$my-warn: mat.define-palette(mat.$red-palette);
+
+$my-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+      warn: $my-warn,
+    ),
+    typography:
+      mat.define-typography-config(
+        $font-family: "Roboto",
+      ),
+    density: -1,
+  )
+);
+
+@include mat.core-theme($my-theme);
+
+@include mat.all-component-themes($my-theme);
+
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.custom-style {
+  --mdc-snackbar-container-color : #Cc0202;
+  color: white !important;
+}
+
+.addInve{
+  --mdc-snackbar-container-color : green;
+  color: white !important;
+}
+
+.mat-mdc-form-field-infix{
+  width: 230px !important;
+}
+ 
+ 

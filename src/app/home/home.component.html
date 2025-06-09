@@ -1,0 +1,47 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <div class="logo-img"  (click)="setActiveHeader('dashboard')">
+        <!-- <img src="assets/images/logo.png" alt="logo"> -->
+         <h3 style="background-color: black; padding: 5px; border-radius: 5px;">Inventory Management</h3>
+      </div>
+      <div class="name-container">
+        <div class="header-btn" 
+             [ngClass]="{'active': activeHeader === 'dashboard'}" 
+             (click)="setActiveHeader('dashboard')">
+          {{ dashboardTitle }}
+        </div>
+        <div class="header-btn" 
+             [ngClass]="{'active': activeHeader === 'inventory'}" 
+             (click)="setActiveHeader('inventory')">
+          {{ inventoryTitle }}
+        </div>
+        <div class="header-btn" 
+             [ngClass]="{'active': activeHeader === 'transit'}" 
+             (click)="setActiveHeader('transit')">
+          {{ transitTitle }}
+        </div>
+      </div>      
+      <div *ngIf="activeHeader !== 'dashboard'" class="scarch">
+        <mat-icon class="mat-icons" matSuffix>search</mat-icon>
+        <input placeholder="Search by Serial Number/Username/User ID" 
+               type="search" 
+               class="search-input"
+               (input)="onSearchInput($event)"/>
+      </div>
+      <span class="example-spacer"></span>
+      
+      
+    
+      
+      <div class="header-btn" [matMenuTriggerFor]="menu">Quick Action</div>
+        <mat-menu #menu="matMenu"  xPosition="before">
+          <button mat-menu-item (click)="openAddDialog()">Add Inventory</button>
+          <button mat-menu-item (click)="openImportDialog()">Import Excel</button>
+          <button mat-menu-item (click)="openAssignInventoryDialog()">Assign Inventory</button>
+        </mat-menu>
+  
+      <mat-icon class="example-icon" aria-hidden="false" aria-label="Example person icon">person</mat-icon>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+  

@@ -1,0 +1,30 @@
+@import "../../../shared/color.scss";
+
+.drop-area {
+    display: flex;                /* Enables flexbox layout */
+    flex-direction: column;       /* Stacks the items vertically */
+    align-items: center;          /* Centers items horizontally */
+    justify-content: center;      /* Centers items vertically */
+    height: 100px;                /* Optional: Set a height for the drop area */
+    border: 1px $color4 solid;           /* Optional: Style the drop area */
+    border-radius: 8px;           /* Optional: Round the corners */
+    padding: 15px;                /* Optional: Add padding */
+    cursor: pointer;
+  }
+  .dialog-actions {
+    display: flex;
+    justify-content: flex-end;  /* Align buttons to the right */
+    gap: 8px;  /* Optional: Add some space between the buttons */
+  }
+
+  .downloadBtn{
+    background-color: $color1 !important;
+    color: $color2 !important;
+  }
+  
+  .mat-mdc-outlined-button{
+    --mdc-outlined-button-outline-width: 1px;
+    --mdc-outlined-button-container-shape: 0px;
+    color: $color6 !important;
+    border-color: $color6 !important;
+  }

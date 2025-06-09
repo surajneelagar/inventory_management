@@ -1,0 +1,31 @@
+:host {
+  display: block;
+  padding: var(--toolbar-height, 60px) 20px 20px; /* Uses the variable for the top padding, and 20px for others */
+}
+
+.top-container{
+  color: #106ebe;
+}
+mat-card-title{
+  color: #284481;
+}
+.card-container {
+  display: flex;
+  gap: 20px; /* Space between cards */
+  flex-wrap: wrap; /* Allows the cards to wrap if the screen is too small */
+}
+
+.example-card {
+  flex: 1 1 45%; /* Allows the cards to take up 45% of the container, and grow or shrink if needed */
+  min-width: 300px; /* Ensures cards do not become too small */
+  height: 18pc;
+}
+mat-card-content{
+  height: calc(54vh - 94px); /* Adjust by subtracting the space taken by the header and footer */
+  overflow: auto; /* Enables scrolling */
+}
+
+.mat-mdc-card-content {
+  display: block;
+  padding: 0px !important;
+}

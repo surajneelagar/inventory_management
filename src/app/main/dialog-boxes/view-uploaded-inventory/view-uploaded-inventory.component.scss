@@ -1,0 +1,88 @@
+@import "../../../shared/color.scss";
+
+.action-btn {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Adds space between the icons */
+  
+    mat-icon {
+      font-size: 24px; /* Adjust size if needed */
+      cursor: pointer; /* Add pointer cursor to indicate they are clickable */
+    }
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;  /* Align buttons to the right */
+  gap: 8px;  /* Optional: Add some space between the buttons */
+}
+
+/* Remove border, outline, and box-shadow from input with custom-input class */
+input.custom-input {
+  border: none !important;  /* Removes the default border */
+  outline: none !important;  /* Removes the focus outline */
+  box-shadow: none !important; /* Removes any box-shadow */
+  background-color: transparent; /* Makes the background transparent */
+}
+
+/* Ensures no border on focus */
+input.custom-input:focus {
+  border: none !important; /* Ensures no border on focus */
+  outline: none !important; /* Ensures no outline on focus */
+}
+
+.required {
+  color: red;
+  font-weight: bold;
+  margin-left: 4px;
+}
+
+.required {
+  color: red;
+  margin-left: 2px;
+}
+
+.error {
+  border: 1px solid red;
+}
+.mat-mdc-outlined-button{
+  --mdc-outlined-button-outline-width: 1px;
+  --mdc-outlined-button-container-shape: 0px;
+  color: $color6 !important;
+  border-color: $color6 !important;
+}
+
+
+.data-cell.invalid {
+  background-color: #ffdddd; /* Light red for invalid cells */
+  border: 1px solid $color6;
+}
+
+
+.custom-style {
+  background-color: $color6 !important;
+  color: white !important;
+}
+
+.input-container {
+  display: flex;
+  align-items: center; /* Vertically centers the input and toggle */
+  height: 100%; /* Ensures the container takes full height for centering */
+}
+
+.custom-input {
+  height: 32px; /* You can adjust this value based on your needs */
+  display: flex;
+  align-items: center; /* Vertically centers content inside the input */
+  width: 128px;
+}
+.input-container{
+  .custom-input {
+    width: 98px;
+  }
+}
+
+mat-datepicker-toggle {
+  display: flex;
+  align-items: center;
+}

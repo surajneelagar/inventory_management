@@ -1,0 +1,53 @@
+@import "../../../shared/color.scss";
+
+.inventory-form .form-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 44px; /* Optional: Adjust the space between the form fields */
+  }
+
+  .form-container p,
+  .header-content p {
+    font-weight: 550;
+    font-size: 14px;
+    cursor: pointer;
+    color: #106ebe;
+  }
+  
+  .inventory-form .mat-form-field {
+    width: 100%; /* Ensure form fields take the full width */
+  }
+  
+  .dialog-actions {
+    display: flex;
+    justify-content: flex-end;  /* Align buttons to the right */
+    gap: 8px;  /* Optional: Add some space between the buttons */
+  }
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    align-items: center; /* Optional: if you want to vertically align the items */
+    border-bottom: 1px gray solid;
+    p{
+      margin-right: 20px;
+      margin-bottom: -40px;
+    }
+  }
+
+  ::ng-deep .mdc-text-field {
+    padding: 0px!important;
+  }
+  
+  .mdc-dialog__title{
+    border-bottom:none !important;
+    padding-bottom: 0px !important;
+  }
+
+  .mat-mdc-outlined-button{
+    --mdc-outlined-button-outline-width: 1px;
+    --mdc-outlined-button-container-shape: 0px;
+    color: $color6 !important;
+    border-color: $color6 !important;
+  }

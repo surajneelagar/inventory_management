@@ -1,0 +1,137 @@
+<h1 mat-dialog-title>Device History</h1>
+
+<div mat-dialog-content>
+    <div class="top-content">
+      <mat-card class="example-card" appearance="outlined">
+        <mat-card-content>
+          <div *ngIf="isAssignedComponent">
+            <strong>Serial No: {{ historyData?.serialNumber }}</strong>
+            <p> <b>Purchase Date: </b>{{ historyData?.purchaseDate | date: 'MM/dd/yyyy' }}</p>
+            <p> <b>Warranty Till: </b>{{ historyData?.warrantyTill | date: 'MM/dd/yyyy' }}</p>
+            <p> <b>Last Physical Inventory: </b>{{ data?.physicalInventory | date: 'MM/dd/yyyy hh:mm a' }}</p>
+            <p> <b>Order ID: </b>{{ historyData?.orderNumber }}</p>
+            <p> <b>Manufacturer ID: </b>{{ historyData?.manufacturer }}</p>
+            <p> <b>Type: </b>{{ historyData?.type }}</p>
+            <!-- <p> <b>Warranty Entitlement Type: </b>{{ historyData?.warrantyEntitlementType }}</p>
+            <p> <b>Service Level Description: </b>{{ historyData?.warrantyServiceLevelDesc }}</p> -->
+          </div>
+          
+          <div *ngIf="!isAssignedComponent">
+            <p> <b>Inventory Type: </b>{{ "NO DATA" }}</p>
+            <p> <b>Assigned To: </b>{{ "NO DATA" }}</p>
+            <p> <b>Tracking Number: </b>{{ "NO DATA" }}</p>
+            <p> <b>Location: </b>{{ "NO DATA" }}</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="example-card" appearance="outlined">
+        <mat-card-content>
+          <strong>CrowdStrike</strong>
+          <p><b>Host Name: </b>{{ historyData?.machineHost }}</p>
+          <p><b>Last Logged In: </b>{{ historyData?.syncLastLoggedCrowdstrikeDate | date: 'MM/dd/yyyy hh:mm a' }}</p>
+          <p><b>Location: </b>{{ historyData?.location }}</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="example-card" appearance="outlined">
+        <mat-card-content>
+          <strong>Intune</strong>
+          <p><b>Last Logged In: </b>{{ historyData?.syncLastLoggedIntuneDate | date: 'MM/dd/yyyy hh:mm a' }}</p>
+          <p><b>Location: </b>{{ historyData?.location }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="middel-content" *ngIf="isAssignedComponent">
+      <form [formGroup]="trackingForm" (ngSubmit)="onSubmit()">
+        <div class="trackerStyle">
+          <div class="form-container">
+            <mat-form-field appearance="fill">
+              <mat-label>Tracking Number</mat-label>
+              <input matInput formControlName="trackingNumber">
+            </mat-form-field>
+          </div>
+          <div class="form-container">
+            <button mat-flat-button class="trackerBtn" type="submit">Proceed</button>
+          </div>
+        </div>
+      
+        <div class="form-container">
+          <mat-form-field appearance="fill" >
+            <mat-label></mat-label>
+            <input matInput [value]="status" readonly>
+          </mat-form-field>
+        </div>
+      </form>
+      
+  </div>
+
+
+    <div class="button-content">
+      <div class="status-item" *ngIf="!isAssignedComponent">
+        <div class="icon-container">
+          <div class="rounded-circle-image">
+            <img src="assets/images/Group 533.svg" alt="Imf">
+          </div>
+          <p class="status-name">Estimated Delivered Date</p>
+        </div>
+        <p class="timestamp">{{ 'No Data' }}</p>
+      </div>
+      
+      <div class="status-item" *ngIf="!isAssignedComponent">
+        <div class="icon-container">
+          <div class="rounded-circle-image">
+            <img src="assets/images/noun-delivery-truck-location-5120273.svg" alt="Imf">
+          </div>
+          <p class="status-name">On the way</p>
+        </div>
+        <p class="timestamp">{{ 'No Data' }}</p>
+      </div>
+      
+      <div class="status-item" *ngIf="!isAssignedComponent">
+        <div class="icon-container">
+          <div class="rounded-circle-image">
+            <img src="assets/images/noun-shipped-4929498.svg" alt="Imf">
+          </div>
+          <p class="status-name">Shipped</p>
+        </div>
+        <p class="timestamp">{{ 'No Data' }}</p>
+      </div>
+      
+      <div class="status-item" *ngIf="isAssignedComponent">  
+        <div *ngIf="trackAssignedData?.userEmail" class="icon-container">
+          <div class="rounded-circle-image">
+            <img src="assets/images/noun-assign-6849551.svg" alt="Imf">
+          </div>
+          <p class="status-name">Assigned To : {{ trackAssignedData.userEmail }}</p>
+        </div>
+        <p class="timestamp" *ngIf="trackAssignedData?.userEmail">{{ trackAssignedData.eventDate }}</p>
+      </div>
+      
+      <div class="status-item" *ngIf="isAssignedComponent">  
+        <div *ngIf="trackReturnedData?.userEmail" class="icon-container">
+          <div class="rounded-circle-image">
+            <img src="assets/images/noun-return-7439038.svg" alt="Imf">
+          </div>
+          <p class="status-name">Returned By : {{ trackReturnedData.userEmail }}</p>
+        </div>
+        <p class="timestamp" *ngIf="trackReturnedData?.userEmail">{{ trackReturnedData.eventDate }}</p>
+      </div>
+      
+      <div class="status-item" *ngIf="isAssignedComponent">  
+        <div class="icon-container">
+          <!-- <div class="rounded-circle-image"> -->
+            <!-- <img src="assets/images/noun-assign-6849551.svg" alt="Imf"> -->
+          <!-- </div> -->
+          <!-- <p class="status-name">Assigned To</p> -->
+        </div>
+        <!-- <p class="timestamp">{{ 'No Data' }}</p> -->
+      </div>
+    </div>
+    
+</div>
+
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-stroked-button mat-dialog-close>Cancel</button>
+</div>

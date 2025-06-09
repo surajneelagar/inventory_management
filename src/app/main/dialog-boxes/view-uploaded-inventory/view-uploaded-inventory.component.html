@@ -1,0 +1,80 @@
+<!-- <h1 mat-dialog-title>Verify Uploaded Items</h1>
+
+<div mat-dialog-content>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="table-layout: auto;">
+
+    <ng-container *ngFor="let column of columns; trackBy: trackByFn" [matColumnDef]="column.key">
+
+      <th mat-header-cell *matHeaderCellDef style="max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+        {{ column.displayName }}
+        <span *ngIf="column.isRequired" class="required">*</span>
+      </th>
+
+      <td mat-cell *matCellDef="let element; let i = index" style="max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+          [attr.data-row-index]="i"
+          [attr.data-column-index]="columns.indexOf(column)"
+          class="data-cell"
+          [class.invalid]="hasError(element, column)">
+        <input matInput [(ngModel)]="element[column.key]" [type]="'text'" class="custom-input" required>
+      </td>
+
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+</div>
+
+
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-stroked-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button color="primary" (click)="saveData()">Save</button>
+</div> -->
+
+
+<h1 mat-dialog-title>Verify Uploaded Items</h1>
+
+<div mat-dialog-content>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="table-layout: auto;">
+
+    <ng-container *ngFor="let column of columns; trackBy: trackByFn" [matColumnDef]="column.key">
+
+      <th mat-header-cell *matHeaderCellDef style="max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+        {{ column.displayName }}
+        <span *ngIf="column.isRequired" class="required">*</span>
+      </th>
+
+      <td mat-cell *matCellDef="let element; let i = index" style="max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+          [attr.data-row-index]="i"
+          [attr.data-column-index]="columns.indexOf(column)"
+          class="data-cell"
+          [class.invalid]="hasError(element, column)">
+        
+        <!-- Conditionally render input or date picker -->
+        <ng-container *ngIf="column.dataType === 'string'; else dateInput">
+          <input matInput [(ngModel)]="element[column.key]" [type]="'text'" class="custom-input" required>
+        </ng-container>
+
+        <!-- Template for date input -->
+        <ng-template #dateInput>
+          <div class="input-container">
+            <input matInput [(ngModel)]="element[column.key]" [matDatepicker]="picker" class="custom-input" required readonly>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </div>
+        </ng-template>
+      </td>
+
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+</div>
+
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-stroked-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button color="primary" (click)="saveData()">Save</button>
+</div>

@@ -1,0 +1,31 @@
+@import "../../../shared/color.scss";
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;  /* Align buttons to the right */
+    gap: 8px;  /* Optional: Add some space between the buttons */
+  }
+
+  .assignDevice-form .form-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 44px; /* Optional: Adjust the space between the form fields */
+  }
+
+  .assignDevice-form .form-container1 {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 44px; /* Optional: Adjust the space between the form fields */
+  }
+
+  ::ng-deep .mdc-text-field {
+    padding: 0px!important;
+  }
+  
+
+  .mat-mdc-outlined-button{
+    --mdc-outlined-button-outline-width: 1px;
+    --mdc-outlined-button-container-shape: 0px;
+    color: $color6 !important;
+    border-color: $color6 !important;
+  }

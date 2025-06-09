@@ -1,0 +1,56 @@
+<h1 mat-dialog-title>Assign Device</h1>
+
+<div mat-dialog-content>
+    <form action="" [formGroup]="assignDevice" class="assignDevice-form">
+        <div class="form-container">
+            <mat-form-field appearance="fill">
+                <mat-label>Serial Number</mat-label>
+                <input matInput formControlName="serialNumber" readonly>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Assigned to</mat-label>
+              <mat-select formControlName="assignedTo">
+                <!-- Search Input Container -->
+                <div class="search-container">
+                  <mat-icon class="mat-icons" matSuffix>search</mat-icon>
+                  <input matInput [formControl]="searchControl" placeholder="Search...">
+                </div>
+                <!-- Options List with Scroll -->
+                <div class="mat-select-scroll-container" (scroll)="onInventoryTableScroll($event)">
+                  <mat-option *ngFor="let user of filteredAssignedToOptions" [value]="user.email">
+                    <div class="user-option">
+                      {{ user.fullName }}
+                      <span class="email-text">({{ user.email }})</span>
+                    </div>
+                  </mat-option>
+                </div>
+              </mat-select>
+              @if(assignDevice.get('assignedTo')?.hasError('required') &&
+              assignDevice.get('assignedTo')?.touched){
+              <mat-error>Assigned to is required </mat-error>
+              }
+            </mat-form-field>
+            
+            
+        </div>
+
+        <div class="form-container">
+          <mat-form-field appearance="fill">
+            <mat-label>Tracking Number</mat-label>
+            <input matInput formControlName="trackingNumber">
+        </mat-form-field>
+        </div>
+        <div class="form-container1">
+          <mat-form-field appearance="fill">
+              <mat-label>Comment</mat-label>
+              <input matInput formControlName="comment">
+          </mat-form-field>
+      </div>
+    </form>
+</div>
+
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-stroked-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button color="primary" [disabled]="!assignDevice.valid" (click)="onClickSave()">Save</button>
+</div>

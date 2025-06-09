@@ -1,0 +1,233 @@
+<div class="top-container"> 
+  <div class="card-lable">
+    <div *ngFor="let label of cardLable; let i = index">
+        <mat-card class="card" [ngStyle]="{'background-color': getCardColor(label)}" appearance="outlined">
+            <mat-card-content>
+                <p>{{ label }}</p>
+            </mat-card-content>
+            <mat-card-header>
+                <mat-card-title>100</mat-card-title>
+            </mat-card-header>
+        </mat-card>
+    </div>
+</div>
+<!-- ------------------------------------------OR------------------------------------------- -->
+<!-- <div class="card-lable">
+      <mat-card class="card" style="background-color: #5873a4;" appearance="outlined">
+          <mat-card-content>
+              <p>All Devices</p>
+          </mat-card-content>
+          <mat-card-header>
+              <mat-card-title>100</mat-card-title>
+          </mat-card-header>
+      </mat-card>
+      <mat-card class="card" style="background-color: #106ebe;" appearance="outlined">
+          <mat-card-content>
+              <p>Non-Compliant</p>
+          </mat-card-content>
+          <mat-card-header>
+              <mat-card-title>100</mat-card-title>
+          </mat-card-header>
+      </mat-card>
+      <mat-card class="card" style="background-color: #db135b;" appearance="outlined">
+        <mat-card-content>
+            <p>Returnable</p>
+        </mat-card-content>
+        <mat-card-header>
+            <mat-card-title>100</mat-card-title>
+        </mat-card-header>
+      </mat-card>
+      <mat-card class="card" style="background-color: #ffc40c;" appearance="outlined">
+        <mat-card-content>
+            <p>Warranty Expired</p>
+        </mat-card-content>
+        <mat-card-header>
+            <mat-card-title>100</mat-card-title>
+        </mat-card-header>
+      </mat-card>
+      <mat-card class="card" style="background-color: #284481;" appearance="outlined">
+        <mat-card-content>
+            <p>In Transit</p>
+        </mat-card-content>
+        <mat-card-header>
+            <mat-card-title>100</mat-card-title>
+        </mat-card-header>
+      </mat-card>
+</div> -->
+
+<div class="mid-container">
+  <h2>Inventory List</h2>
+  <div class="scarch">
+    <mat-icon class="mat-icons" matSuffix>search</mat-icon>
+    <input placeholder="Search by Serial Number" type="search" class="search-input" [formControl]="searchQuaryInventory"/>
+  </div>
+</div>
+
+<div class="left-table-container" (scroll)="onInventoryTableScroll($event)">
+  <table mat-table [dataSource]="inventoryDataSource" class="mat-elevation-z8" multiTemplateDataRows>
+
+    <ng-container matColumnDef="serialNumber">
+      <th mat-header-cell *matHeaderCellDef>Serial Number</th>
+      <td mat-cell *matCellDef="let element" class="SerialNo" (click)="openDeviceHistory(element.serialNumber, true)">
+        {{element.serialNumber}}
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="warrantyTill">
+      <th mat-header-cell *matHeaderCellDef>Warranty Till</th>
+      <td mat-cell *matCellDef="let element" (click)="expandedElement = expandedElement === element ? null : element">
+        {{element.warrantyTill | date: 'MM/dd/yyyy'}}
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="lastSyncDate">
+      <th mat-header-cell *matHeaderCellDef>Last Sync Date</th>
+      <td mat-cell *matCellDef="let element" (click)="expandedElement = expandedElement === element ? null : element">
+        {{element.lastSyncDate | date: 'MM/dd/yyyy hh:mm a'}}
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="model">
+      <th mat-header-cell *matHeaderCellDef>Model</th>
+      <td mat-cell *matCellDef="let element" (click)="expandedElement = expandedElement === element ? null : element">
+        {{element?.model}}
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let element" (click)="expandedElement = expandedElement === element ? null : element">
+        {{element.status}}
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef>Type</th>
+      <td mat-cell *matCellDef="let element" (click)="expandedElement = expandedElement === element ? null : element">
+        {{element.deviceType}}
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="inventoryToDisplayWithExpand.length">
+        <div class="example-element-detail"
+             [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+          <div class="example-element-diagram">
+            <div class="expand-content">
+              <div class="contents">
+                <label>Assigned To</label>
+                <p>{{ element.assignTo }}</p>
+              </div>
+              <div class="contents">
+                <label>Last Logged in</label>
+                <p>{{ 'NO DATA' }}</p>
+              </div>
+              <div class="contents">
+                <label>Last Assigned To</label>
+                <p>{{ 'NO DATA' }}</p>
+              </div>
+              <div class="contents">
+                <label>Location</label>
+                <p>{{ element.location }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="inventoryDisplayedColumns sticky: true"></tr>
+    <tr mat-row *matRowDef="let element; columns: inventoryDisplayedColumns;" class="example-element-row"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+  
+  </table>
+  
+  
+  </div>
+</div>
+
+<div class="bottom-container">
+  <div class="top-content">
+    <h2>User List</h2>
+    <div class="scarch">
+      <mat-icon class="mat-icons" matSuffix>search</mat-icon>
+      <input placeholder="Search by Display Name" type="search" class="search-input" [formControl]="searchQuaryUser"/>
+    </div>
+  </div>
+
+  <div class="right-table-container" (scroll)="onUserTableScroll($event)">
+    <table mat-table [dataSource]="userDataSource" class="mat-elevation-z8" multiTemplateDataRows>
+  
+      <!-- Serial Number Column -->
+      <ng-container matColumnDef="displayName">
+        <th mat-header-cell *matHeaderCellDef style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px;">User Name</th>
+        <td mat-cell *matCellDef="let element" 
+            class="SerialNo"
+            (click)="onRowClick(element)"> 
+          {{element.displayName}} 
+        </td>
+      </ng-container>
+    
+      <!-- Delivery Date Column -->
+      <ng-container matColumnDef="allocatedMachinesCount">
+        <th mat-header-cell *matHeaderCellDef style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">No of Device</th>
+        <td mat-cell *matCellDef="let element"> {{element.allocatedMachinesCount}} </td>
+      </ng-container>
+    
+      <!-- Warranty Till Column -->
+      <ng-container matColumnDef="deAllocatedMachinesCount">
+        <th mat-header-cell *matHeaderCellDef style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Retunable Device</th>
+        <td mat-cell *matCellDef="let element"> {{element.deAllocatedMachinesCount}} </td>
+      </ng-container>
+    
+      <!-- Order Number Column -->
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px;">Location</th>
+        <td mat-cell *matCellDef="let element" 
+            style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px;"
+            [matTooltip]="element.location">
+            {{element.location}}
+        </td>      
+      </ng-container>
+    
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="userDisplayedColumns.length">
+          <div class="example-element-detail"
+               [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="example-element-diagram">
+              <div class="expand-user-content">
+                <table style="border-collapse: collapse; width: 100%; table-layout: fixed;">
+                  <thead>
+                    <tr>
+                      <th>Serial Number</th>
+                      <th>Device Type</th>
+                      <th style="width:165px !important">Compliant</th>
+                      <th style="width:85px !important;">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let device of deviceData">
+                      <td class="SerialNo" (click)="openDeviceHistory(device.serialNumber,true)">{{ device.serialNumber }}</td>
+                      <td>{{ device.type }}</td>
+                      <td>{{ device.compliant || 'N/A' }}</td>
+                      <td>{{ device.status }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                
+              </div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="userDisplayedColumns sticky: true"></tr>
+      <tr mat-row *matRowDef="let element; columns: userDisplayedColumns;" class="example-element-row"
+          [class.example-expanded-row]="expandedElement === element">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+      
+    </table>
+    
+  </div>
+</div>

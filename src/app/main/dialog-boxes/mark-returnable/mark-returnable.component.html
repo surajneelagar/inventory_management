@@ -1,0 +1,54 @@
+<h1 mat-dialog-title>Mark as Returnable</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="returnableForm" class="assignDevice-form">
+    <div class="form-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Serial Number</mat-label>
+        <input matInput formControlName="serialNumber" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Assigned to</mat-label>
+        <input matInput formControlName="assignedTo" />
+      </mat-form-field>
+    </div>
+
+    <div class="form-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="updataStatus">
+          <mat-option *ngFor="let status of statusOptions" [value]="status">
+            {{ status }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Reason</mat-label>
+        <mat-select formControlName="reasons">
+          <mat-option *ngFor="let reasons of reasonOption" [value]="reasons">
+            {{ reasons }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Tracking Number</mat-label>
+        <input matInput formControlName="trackingNumber" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Comment</mat-label>
+        <input matInput formControlName="comment" />
+      </mat-form-field>
+      
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-stroked-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button color="primary" [disabled]="!returnableForm.valid" (click)="onClickSave()">Save</button>
+</div>

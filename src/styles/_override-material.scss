@@ -1,0 +1,63 @@
+@import "./variables";
+:root {
+    --mat-form-field-state-layer-color: transparent;
+    --mdc-protected-button-container-shape: 0px;
+    --mdc-filled-text-field-input-text-color: rgba(0, 0, 0, 1) 
+    --mdc-filled-button-container-shape: 0px !important;
+    --mat-tab-header-label-text-size: 24px;
+    --mdc-dialog-container-shape: 0px;
+    --mdc-filled-text-field-container-color: transparent;
+    --mat-table-row-item-label-text-color:#626464;
+    // --mdc-filled-text-field-input-text-color: $button-background; 
+    // --mat-select-enabled-trigger-text-color: $button-background;
+    --mdc-filled-text-field-input-text-color: #555555;
+    --mat-table-header-headline-color: #106ebe;
+    --mat-table-header-container-height: 2.5rem;
+    --mat-table-row-item-container-height: 2rem;
+    --mat-table-footer-container-height: 2rem;
+    --mdc-filled-button-container-shape: 0px;
+    --mat-menu-item-hover-state-layer-color: #106ebe;
+    --mat-menu-item-focus-state-layer-color: #106ebe;
+    --mat-menu-container-shape: 0px;
+    --mdc-filled-text-field-disabled-container-color: transparent;
+    // --mdc-filled-text-field-focus-active-indicator-color: #204486;
+    --mat-table-header-headline-weight: 550;
+    --mat-toolbar-standard-height: 54px;
+  }
+
+  .mat-mdc-unelevated-button{
+    --mdc-filled-button-container-shape: 0px !important;
+  }
+  .mat-mdc-outlined-button{
+    // --mdc-outlined-button-container-shape: 2px !important;
+    --mdc-outlined-button-label-text-color: gray !important;
+    // --mat-outlined-button-state-layer-color: gray;
+  }
+
+  .mdc-dialog__title{
+    border-bottom: 1px gray solid;
+    --mdc-dialog-subhead-color: #284481;
+  }
+  .mat-mdc-dialog-actions {
+    background-color: #FAFFFF;
+  }
+  .mat-mdc-dialog-content{
+    background-color: #F5F5F5;
+  }
+  
+  .mat-mdc-menu-item:not([disabled]):hover {
+    color: white;
+  }
+  .mat-mdc-menu-content{
+    padding: 0px !important;
+  }
+
+  .mat-mdc-dialog-container .mdc-dialog__title {
+    margin: 0px;
+  }
+  .mat-mdc-dialog-container .mdc-dialog__content {
+    padding-top: 20px !important;
+  }
+  .mat-mdc-form-field-hint-wrapper, .mat-mdc-form-field-error-wrapper {
+    padding: 0 !important;
+  }

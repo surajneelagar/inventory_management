@@ -1,0 +1,144 @@
+@import "../../shared/color.scss";
+:host {
+  display: block;
+  padding: var(--toolbar-height, 60px) 5px 5px; /* Uses the variable for the top padding, and 20px for others */
+}
+::ng-deep .mdc-text-field {
+  padding: 0px!important;
+}
+
+.action-btn {
+  display: flex;
+  // justify-content: center;
+  gap: 10px; /* Adds space between the icons */
+
+  mat-icon {
+    font-size: 20px; /* Adjust size if needed */
+    cursor: pointer; /* Add pointer cursor to indicate they are clickable */
+    color: $iconColor1;
+  }
+}
+mat-icon {
+  font-size: 20px; /* Adjust size if needed */
+  cursor: pointer; /* Add pointer cursor to indicate they are clickable */
+  color: $iconColor1;
+  height: 20px;
+}
+
+
+.table-container {
+  height: calc(85vh - 100px);
+  overflow: auto;
+  border-radius: 0px;
+  box-shadow: $box-shadow4;
+}
+
+.top-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.bottom-container {
+  display: flex;
+  //justify-content:flex-end;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 15px;
+  padding-top: 8px;
+  gap: 10px;
+}
+
+.left {
+  text-align: left;
+  color: $color1;
+}
+
+.right {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 8px 16px;
+}
+
+.btn-styling {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Optional: Adjusts space between buttons */
+}
+
+.btn-styling button {
+  min-width: 140px; /* Optional: Minimum width to ensure buttons don't get too small */
+}
+
+/* Styles for the search bar (inside toolbar) */
+.scarch {
+  display: flex;
+  align-items: center;
+  background: $color2;
+  border-radius: 25px;
+  padding: 8px;
+  border: 1px solid $color4;
+  width: 24pc;
+  height: 14px;
+}
+
+
+
+.scarch .search-input {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  height: 100%;
+  font-size: 12px;
+}
+
+.selected {
+  background-color: $color1;
+  color: $color2 !important;
+}
+
+.mat-mdc-menu-item:not([disabled]):hover {
+  background-color: #00000020 !important;
+  color: #626464;
+}
+.mat-mdc-menu-item{
+  color: #626464;
+}
+.mat-mdc-menu-item {
+  min-height: 0px !important;
+}
+
+.headerSty {
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ellipsis for overflow */
+  width: 150px;
+}
+
+.center-align{
+  text-align: center;
+  vertical-align: middle;
+}
+.mat-icon{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.no-data-message {
+  display: flex;
+  justify-content: center;   
+  align-items: center;      
+  height: 100%;             
+  // position: absolute;        
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 18px;          
+  color: #888;               
+}
+
