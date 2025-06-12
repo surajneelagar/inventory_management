@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit{
   onDashboard: boolean = false;
   constructor(
     private dialog: MatDialog,
-    private router: Router, 
+    public router: Router, 
     private activatedRoute: ActivatedRoute,
     private searchService: SearchService) {}
 

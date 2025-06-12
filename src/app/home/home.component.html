@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar *ngIf="!['/login', '/register'].includes(router.url)"  color="primary">
     <mat-toolbar-row>
       <div class="logo-img"  (click)="setActiveHeader('dashboard')">
         <!-- <img src="assets/images/logo.png" alt="logo"> -->

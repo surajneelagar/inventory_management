@@ -1,0 +1,28 @@
+<mat-card class="register-card">
+  <h2>Register</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+    <mat-form-field  class="full-width">
+      <mat-label>Full Name</mat-label>
+      <input matInput formControlName="name" required />
+    </mat-form-field>
+
+    <mat-form-field  class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" required />
+    </mat-form-field>
+
+    <mat-form-field  class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" required />
+    </mat-form-field>
+
+    <mat-form-field  class="full-width">
+      <mat-label>Confirm Password</mat-label>
+      <input matInput type="password" formControlName="confirmPassword" required />
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" type="submit" [disabled]="registerForm.invalid">
+      Register
+    </button>
+  </form>
+</mat-card>
