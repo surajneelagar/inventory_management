@@ -22,9 +22,15 @@ loginForm: FormGroup;
 
   onLogin() {
     if (this.loginForm.valid) {
-      console.log('Login Data:', this.loginForm.value);
-      // Add login API call or authentication logic here
-       this.router.navigate(['/dashboard']);
+        // Example token logic (simulate login)
+        localStorage.setItem('token', '123456'); // Save token on login
+        this.router.navigate(['/dashboard']);
+      }
     }
-  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+    }
+
 }

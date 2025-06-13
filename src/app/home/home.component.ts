@@ -122,4 +122,10 @@ export class HomeComponent implements OnInit{
       console.log('The dialog was closed');
     });
   }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+
 }
