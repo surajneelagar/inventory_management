@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ImportExcelService } from '../../../services/import-excel.service';
+import { ApisService } from '../../../services/apis.service';
 @Component({
   selector: 'app-change-status',
   standalone: true,
@@ -20,6 +21,7 @@ export class ChangeStatusComponent {
     private _fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _importService: ImportExcelService,
+    private _apisService: ApisService,
     private _snackbar : MatSnackBar,
     private _dialogRef: MatDialogRef<ChangeStatusComponent>
     
@@ -33,7 +35,7 @@ export class ChangeStatusComponent {
       updataStatus: ['' ,Validators.required]
     });
 
-    this._importService.masterData().subscribe((res: any) => {
+    this._apisService.masterData().subscribe((res: any) => {
       this.statusOptions = res?.status?.map((status: any) => status.name);  
     })
   

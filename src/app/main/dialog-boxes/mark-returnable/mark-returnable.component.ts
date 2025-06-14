@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ImportExcelService } from '../../../services/import-excel.service';
+import { ApisService } from '../../../services/apis.service';
 
 @Component({
   selector: 'app-mark-returnable',
@@ -22,6 +23,7 @@ export class MarkReturnableComponent {
     private _fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _importService: ImportExcelService,
+    private _apisService: ApisService,
     private _snackbar: MatSnackBar,
     private _dialogRef: MatDialogRef<MarkReturnableComponent>
   ) {
@@ -38,7 +40,7 @@ export class MarkReturnableComponent {
       comment: [''] 
     });
 
-    this._importService.masterData().subscribe((res: any) => {
+    this._apisService.masterData().subscribe((res: any) => {
       this.statusOptions = res?.returnableStatus?.map((returnableStatus: any) => returnableStatus.name);
       this.reasonOption = res?.returnReason?.map((returnReason: any) => returnReason.name);
       console.log(this.reasonOption);
