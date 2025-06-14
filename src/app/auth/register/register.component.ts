@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { MatImportModule } from '../../shared/mat-import/mat-import.module';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,8 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private _authService: AuthService,
-    private router: Router
+    private router: Router,
+    private _snackbar: MatSnackBar
   ) {
     this.registerForm = this.fb.group(
       {
@@ -57,6 +59,7 @@ export class RegisterComponent {
       },
       error: err => {
         console.error('Registration failed:', err);
+        this._snackbar.open(err.error.message, undefined, { duration: 3000, panelClass: 'custom-style' })
       }
     });
   }

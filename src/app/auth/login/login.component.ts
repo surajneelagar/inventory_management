@@ -3,6 +3,7 @@ import { MatImportModule } from '../../shared/mat-import/mat-import.module';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,12 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent {
 loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder,private router: Router, private _authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router, 
+    private _authService: AuthService,
+    private _snackbar: MatSnackBar
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -41,7 +47,7 @@ loginForm: FormGroup;
         },
         error: (err) => {
           console.error('Login failed:', err);
-          alert('Login failed. Please check your credentials.');
+            this._snackbar.open(err.error.message, undefined, { duration: 3000, panelClass: 'custom-style' })
         }
       });
   }

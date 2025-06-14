@@ -17,6 +17,7 @@ import { NativeDateModule } from '@angular/material/core';
 import { ImportExcelService } from '../../../services/import-excel.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
+import { ApisService } from '../../../services/apis.service';
 
 @Component({
   selector: 'app-add-inventory',
@@ -37,6 +38,7 @@ export class AddInventoryComponent implements OnInit {
     private dialog: MatDialog,
     private _fb: FormBuilder,
     private _importService: ImportExcelService,
+    private _apisService: ApisService,
     private _snackbar: MatSnackBar
   ) {
     this.inventoryForm = this._fb.group({
@@ -55,7 +57,9 @@ export class AddInventoryComponent implements OnInit {
   }
   ngOnInit(): void {
     this.previousData = localStorage.getItem('inventoryFormData');
-    this._importService.masterData().subscribe((res: any) => {
+    this._apisService.masterData().subscribe((res: any) => {
+      console.log(res);
+      
       this.deviceTypeOptions = res?.deviceTypes?.map((device: any) => device.name);
       this.modelOptions = res?.machineModels?.map((model: any) => model.name);
       this.locationOptions = res?.countries?.map((country: any) => country.name);
