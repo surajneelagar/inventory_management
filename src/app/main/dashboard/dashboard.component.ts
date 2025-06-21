@@ -13,6 +13,7 @@ import { addInventory } from '../../models/dialog-boxes';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subject, switchMap, takeUntil } from 'rxjs';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { ApisService } from '../../services/apis.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -57,7 +58,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   
   constructor(
     private dialog: MatDialog,
-    private  _importExcelService: ImportExcelService
+    private  _importExcelService: ImportExcelService,
+    private _apisService: ApisService,
   ){
     
   }
@@ -164,22 +166,33 @@ ngOnDestroy(): void {
 
   getInventoryList() {
     this.isLoading = true; 
-    this._importExcelService.inventoryList(this.filterParams, this.page, this.pageSize).subscribe(
-      (inventoryList:any) => {
-        // console.log('Inventory List Response:', inventoryList);
-        if (inventoryList && !!inventoryList?.length) {
-          this.inventoryDataSource = [...this.inventoryDataSource, ...inventoryList];
+    // this._importExcelService.inventoryList(this.filterParams, this.page, this.pageSize).subscribe(
+    //   (inventoryList:any) => {
+    //     // console.log('Inventory List Response:', inventoryList);
+    //     if (inventoryList && !!inventoryList?.length) {
+    //       this.inventoryDataSource = [...this.inventoryDataSource, ...inventoryList];
+    //       // console.log('Inventory DataSource:', this.inventoryDataSource);
+    //     } else {
+    //       console.error('Invalid response structure');
+    //     }
+    //     this.isLoading = false;
+    //   },
+    //   (error) => {
+    //     console.error('Failed to fetch inventory data', error);
+    //     this.isLoading = false;
+    //   }
+    // );
+    
+    this._apisService.dashboardInventory().subscribe((inventoryList : any) => {
+      console.log(inventoryList);
+      if (inventoryList && !!inventoryList?.length) {
+          this.inventoryDataSource = inventoryList;
           // console.log('Inventory DataSource:', this.inventoryDataSource);
         } else {
           console.error('Invalid response structure');
         }
-        this.isLoading = false;
-      },
-      (error) => {
-        console.error('Failed to fetch inventory data', error);
-        this.isLoading = false;
-      }
-    );
+    })
+  
   }
 
   getUserList(){
