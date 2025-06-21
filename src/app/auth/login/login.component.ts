@@ -35,20 +35,26 @@ loginForm: FormGroup;
   }
   onLogin() {
     if (this.loginForm.invalid) return;
+
     const payload = this.transformData(this.loginForm.value);
-    console.log("Payload:", payload);
     this._authService.logIn(payload).subscribe({
-        next: (res: any) => {
-          // Assuming response includes a token
-          console.log(res);
-          
-          localStorage.setItem('token', res.token);
-          this.router.navigate(['/dashboard']);
-        },
-        error: (err) => {
-          console.error('Login failed:', err);
-            this._snackbar.open(err.error.message, undefined, { duration: 3000, panelClass: 'custom-style' })
-        }
-      });
+      next: (res: any) => {
+        localStorage.setItem('token', res.token);
+        this._authService.getUser(payload.email).subscribe((user: any) => {
+          const userId = user.id;
+          console.log("User ID:", userId);
+          this._authService.setUserId(userId); 
+          this.router.navigate(['/dashboard']); 
+        });
+      },
+      error: (err) => {
+        console.error('Login failed:', err);
+        this._snackbar.open(err.error.message, undefined, {
+          duration: 3000,
+          panelClass: 'custom-style'
+        });
+      }
+    });
   }
+
 }

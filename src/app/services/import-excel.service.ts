@@ -289,10 +289,10 @@ export class ImportExcelService {
 
 
   deviceHistoryEmail(userMailId: string): Observable<any> {
-      return this._http.get(`${this.baseUrl}/device/${userMailId}`);
+      // return this._http.get(`${this.baseUrl}/device/${userMailId}`);
     // https://localhost:7111/device/Liam.Morris@crawco.co.uk
 
-    /*return of(
+  return of(
       [
         {
             "serialNumber": "CSKD043",
@@ -311,7 +311,7 @@ export class ImportExcelService {
       
     ]
      
-    )*/
+    )
   }
 
   allInventoryList(params: any, page: number, pageSize: number,status: string){
