@@ -17,6 +17,7 @@ import { displayNameMapping } from './column-header-mappings';
 import { MarkReturnableComponent } from '../dialog-boxes/mark-returnable/mark-returnable.component';
 import { ChangeStatusComponent } from '../dialog-boxes/change-status/change-status.component';
 import { SearchService } from '../../shared/search.service';
+import { AddUserComponent } from '../dialog-boxes/add-user/add-user.component';
 
 @Component({
   selector: 'app-inventory',
@@ -281,6 +282,8 @@ export class InventoryComponent implements OnInit, OnDestroy {
     }
   }
 
+
+
   openAssignInventoryDialog(element: any) {
     const dialogRef = this.dialog.open(AssignDeviceComponent, {
       width: 'auto',
@@ -308,7 +311,18 @@ export class InventoryComponent implements OnInit, OnDestroy {
       console.log('The dialog was closed');
     });
   }
+  
+  openAddUserDialog(): void {
+    const dialogRef = this.dialog.open(AddUserComponent, {
+      width: 'auto',
+      height: 'auto',
+      disableClose: true,
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
   openDeviceHistory(element: addInventory, isTrue: boolean) {
     const dialogRef = this.dialog.open(DeviceHistoryComponent, {
       width: 'auto',

@@ -89,17 +89,17 @@ export class AddInventoryComponent implements OnInit {
   }
 
   onClickSave(): void {
-  const formData = this.inventoryForm.getRawValue();
-  console.log('Form Data:', formData);
+      const formData = this.inventoryForm.getRawValue();
+      console.log('Form Data:', formData);
 
-  // Save a copy in localStorage
-  localStorage.setItem('inventoryFormData', JSON.stringify(formData));
+      // Save a copy in localStorage
+      localStorage.setItem('inventoryFormData', JSON.stringify(formData));
 
-  // Transform data if needed
-  const payload = {
-    ...this.transformData(formData),
-  };
-console.log(payload);
+      // Transform data if needed
+      const payload = {
+        ...this.transformData(formData),
+      };
+    console.log(payload);
 
   // Call API to save inventory
   this._apisService.addInventory(payload).subscribe({

@@ -1,0 +1,14 @@
+@import "../../../shared/color.scss";
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;  /* Align buttons to the right */
+    gap: 8px;  /* Optional: Add some space between the buttons */
+  }
+
+
+  .form-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 44px; /* Optional: Adjust the space between the form fields */
+  }
