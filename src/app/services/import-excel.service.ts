@@ -400,159 +400,159 @@ export class ImportExcelService {
 allInventoryAssignment(searchQuery: string = '', pageNumber: number = 1) {
     // const { searchQuery, pageNumber } = params;
     console.log(searchQuery)
-    return this._http.get(`${this.baseUrl}/userList?search=${searchQuery}&pageNumber=${pageNumber}`)
-    //  return of (
-    //   [
-    //         {
-    //             "fullName": "Aljhemar Umadhay",
-    //             "email": "Aljhemar.Umadhay@crawco.co.uk"
-    //         },
-    //         {
-    //             "fullName": "Aljhemar Umadhay",
-    //             "email": "Aljhemar.Umadhay@us.crawco.com"
-    //         },
-    //         {
-    //             "fullName": "Khema Rivera (Archived Account)",
-    //             "email": "archive_khema_rivera_20190114@crawco.onmicrosoft.com"
-    //         },
-    //         {
-    //             "fullName": "Thadee Rushemeza (Archived Account)",
-    //             "email": "Archive_Thadee_Rushemeza_20240202@Crawco.onmicrosoft.com"
-    //         },
-    //         {
-    //             "fullName": "Charles Echemuna",
-    //             "email": "charles.echemuna@us.crawco.com"
-    //         },
-    //         {
-    //             "fullName": "Chemene McLeod Freeman",
-    //             "email": "chemene.mcleodfreeman@us.crawco.com"
-    //         },
-    //         {
-    //             "fullName": "Hemant Garg",
-    //             "email": "EXT_Hemant.Garg@Crawford.asia"
-    //         },
-    //         {
-    //             "fullName": "FrenchEmail",
-    //             "email": "FrenchEmail@crawco.ca"
-    //         },
-    //         {
-    //             "fullName": "Hem Shah (Archived Account)",
-    //             "email": "archive_Hem_Shah_20210729@Crawco.onmicrosoft.com"
-    //         },
-    //         {
-    //             "fullName": "ATX - Mayhem Training 2 - 2nd Floor - Flood",
-    //             "email": "G8078106aab294471b2ccf18a2a253ba8@Crawco.onmicrosoft.com"
-    //         },
-    //         {
-    //             "fullName": "ATX - Mayhem Training 1 - 2nd Floor - Flood",
-    //             "email": "Gd3bd8c38a9ec451dae782c6f3225e8bc@Crawco.onmicrosoft.com"
-    //         },
-    //         {
-    //             "fullName": "Hem Shah",
-    //             "email": "Hem.Shah@crawco.ca"
-    //         },
-    //         {
-    //             "fullName": "Hem Shah",
-    //             "email": "Hem.Shah@us.crawco.com"
-    //         },
-    //         {
-    //             "fullName": "Hema Bisht",
-    //             "email": "Hema_Bisht@us.crawco.com"
-    //         },
-    //         {
-    //             "fullName": "Hemant Garg (Admin)",
-    //             "email": "Hemant.Garg@Crawco.onmicrosoft.com"
-    //         },
-    //         {
-    //             "fullName": "Hemant Garg",
-    //             "email": "Hemant.Garg@us.crawco.com"
-    //         },
-    //         {
-    //             "fullName": "Hemant Wanhere",
-    //             "email": "Hemant.Wanhere@us.crawco.com"
-    //         },
-    //         {
-    //             "fullName": "Hemant Mehra",
-    //             "email": "Hemant_Mehra@us.crawco.com"
-    //         },
-    //         {
-    //             "fullName": "AP ME Hemayti Travel Claims",
-    //             "email": "hemaytitravelclaims@broadspire.me"
-    //         },
-    //         {
-    //             "fullName": "Hemi Borell",
-    //             "email": "hemi.borell@crdbce.com.au"
-    //         },
-    //         {
-    //             "fullName": "Jamie Hempkin",
-    //             "email": "Jamie.Hempkin@crawco.co.uk"
-    //         },
-    //         {
-    //             "fullName": "Johnny Richemond",
-    //             "email": "johnny.richemond@us.crawco.com"
-    //         },
-    //         {
-    //             "fullName": "Khema Rivera",
-    //             "email": "Khema_Rivera@us.crawco.com"
-    //         },
-    //         {
-    //             "fullName": "Mathala Hemant",
-    //             "email": "Mathala.Hemant@crawco.co.uk"
-    //         },
-    //         {
-    //             "fullName": "Mathala Hemanth (Guest)",
-    //             "email": "mathala.hemanth@primussoft.com"
-    //         },
-    //         {
-    //             "fullName": "Mayhem-1",
-    //             "email": "Mayhem-1@crawco.onmicrosoft.com"
-    //         },
-    //         {
-    //             "fullName": "Mayhem-2",
-    //             "email": "Mayhem-2@crawco.onmicrosoft.com"
-    //         },
-    //         {
-    //             "fullName": "Mayhem-3",
-    //             "email": "Mayhem-3@crawco.onmicrosoft.com"
-    //         },
-    //         {
-    //             "fullName": "ATX - Mayhem Training 3 - 2nd Floor - Flood",
-    //             "email": "MayhemTraining-3@crawco.onmicrosoft.com"
-    //         },
-    //         {
-    //             "fullName": "Monique Authement",
-    //             "email": "Monique.Authement@choosebroadspire.com"
-    //         },
-    //         {
-    //             "fullName": "Paul van Bethlehem",
-    //             "email": "PaulvanBethlehem@crawco.nl"
-    //         },
-    //         {
-    //             "fullName": "Rashemia Woodley",
-    //             "email": "Rashemia.Woodley@us.crawco.com"
-    //         },
-    //         {
-    //             "fullName": "RiskTechEmail",
-    //             "email": "RiskTechEmail@us.crawco.com"
-    //         },
-    //         {
-    //             "fullName": "Robyn Hemming",
-    //             "email": "Robyn.Hemming@crawco.co.uk"
-    //         },
-    //         {
-    //             "fullName": "Shemika Archable",
-    //             "email": "shemika.archable@us.crawco.com"
-    //         },
-    //         {
-    //             "fullName": "Stacey Hemming (Guest)",
-    //             "email": "shemming@breakthrubev.com"
-    //         },
-    //         {
-    //             "fullName": "Katalyst Bicycle Scheme",
-    //             "email": "stubbenedgebikescheme@crawco.co.uk"
-    //         }
-    //     ]
-    // )
+    // return this._http.get(`${this.baseUrl}/userList?search=${searchQuery}&pageNumber=${pageNumber}`)
+     return of (
+      [
+            {
+                "fullName": "Aljhemar Umadhay",
+                "email": "Aljhemar.Umadhay@crawco.co.uk"
+            },
+            { 
+                "fullName": "Aljhemar Umadhay",
+                "email": "Aljhemar.Umadhay@us.crawco.com"
+            },
+            {
+                "fullName": "Khema Rivera (Archived Account)",
+                "email": "archive_khema_rivera_20190114@crawco.onmicrosoft.com"
+            },
+            {
+                "fullName": "Thadee Rushemeza (Archived Account)",
+                "email": "Archive_Thadee_Rushemeza_20240202@Crawco.onmicrosoft.com"
+            },
+            {
+                "fullName": "Charles Echemuna",
+                "email": "charles.echemuna@us.crawco.com"
+            },
+            {
+                "fullName": "Chemene McLeod Freeman",
+                "email": "chemene.mcleodfreeman@us.crawco.com"
+            },
+            {
+                "fullName": "Hemant Garg",
+                "email": "EXT_Hemant.Garg@Crawford.asia"
+            },
+            {
+                "fullName": "FrenchEmail",
+                "email": "FrenchEmail@crawco.ca"
+            },
+            {
+                "fullName": "Hem Shah (Archived Account)",
+                "email": "archive_Hem_Shah_20210729@Crawco.onmicrosoft.com"
+            },
+            {
+                "fullName": "ATX - Mayhem Training 2 - 2nd Floor - Flood",
+                "email": "G8078106aab294471b2ccf18a2a253ba8@Crawco.onmicrosoft.com"
+            },
+            {
+                "fullName": "ATX - Mayhem Training 1 - 2nd Floor - Flood",
+                "email": "Gd3bd8c38a9ec451dae782c6f3225e8bc@Crawco.onmicrosoft.com"
+            },
+            {
+                "fullName": "Hem Shah",
+                "email": "Hem.Shah@crawco.ca"
+            },
+            {
+                "fullName": "Hem Shah",
+                "email": "Hem.Shah@us.crawco.com"
+            },
+            {
+                "fullName": "Hema Bisht",
+                "email": "Hema_Bisht@us.crawco.com"
+            },
+            {
+                "fullName": "Hemant Garg (Admin)",
+                "email": "Hemant.Garg@Crawco.onmicrosoft.com"
+            },
+            {
+                "fullName": "Hemant Garg",
+                "email": "Hemant.Garg@us.crawco.com"
+            },
+            {
+                "fullName": "Hemant Wanhere",
+                "email": "Hemant.Wanhere@us.crawco.com"
+            },
+            {
+                "fullName": "Hemant Mehra",
+                "email": "Hemant_Mehra@us.crawco.com"
+            },
+            {
+                "fullName": "AP ME Hemayti Travel Claims",
+                "email": "hemaytitravelclaims@broadspire.me"
+            },
+            {
+                "fullName": "Hemi Borell",
+                "email": "hemi.borell@crdbce.com.au"
+            },
+            {
+                "fullName": "Jamie Hempkin",
+                "email": "Jamie.Hempkin@crawco.co.uk"
+            },
+            {
+                "fullName": "Johnny Richemond",
+                "email": "johnny.richemond@us.crawco.com"
+            },
+            {
+                "fullName": "Khema Rivera",
+                "email": "Khema_Rivera@us.crawco.com"
+            },
+            {
+                "fullName": "Mathala Hemant",
+                "email": "Mathala.Hemant@crawco.co.uk"
+            },
+            {
+                "fullName": "Mathala Hemanth (Guest)",
+                "email": "mathala.hemanth@primussoft.com"
+            },
+            {
+                "fullName": "Mayhem-1",
+                "email": "Mayhem-1@crawco.onmicrosoft.com"
+            },
+            {
+                "fullName": "Mayhem-2",
+                "email": "Mayhem-2@crawco.onmicrosoft.com"
+            },
+            {
+                "fullName": "Mayhem-3",
+                "email": "Mayhem-3@crawco.onmicrosoft.com"
+            },
+            {
+                "fullName": "ATX - Mayhem Training 3 - 2nd Floor - Flood",
+                "email": "MayhemTraining-3@crawco.onmicrosoft.com"
+            },
+            {
+                "fullName": "Monique Authement",
+                "email": "Monique.Authement@choosebroadspire.com"
+            },
+            {
+                "fullName": "Paul van Bethlehem",
+                "email": "PaulvanBethlehem@crawco.nl"
+            },
+            {
+                "fullName": "Rashemia Woodley",
+                "email": "Rashemia.Woodley@us.crawco.com"
+            },
+            {
+                "fullName": "RiskTechEmail",
+                "email": "RiskTechEmail@us.crawco.com"
+            },
+            {
+                "fullName": "Robyn Hemming",
+                "email": "Robyn.Hemming@crawco.co.uk"
+            },
+            {
+                "fullName": "Shemika Archable",
+                "email": "shemika.archable@us.crawco.com"
+            },
+            {
+                "fullName": "Stacey Hemming (Guest)",
+                "email": "shemming@breakthrubev.com"
+            },
+            {
+                "fullName": "Katalyst Bicycle Scheme",
+                "email": "stubbenedgebikescheme@crawco.co.uk"
+            }
+        ]
+    )
   }
 }
 

@@ -21,4 +21,8 @@ export class ApisService {
     return this._http.get(`${this.baseUrl}/dashboardInventory`)
   }
   // dashboardInventory
+  addUser(params:any){
+    console.log("params", params);
+    return this._http.post(`${this.baseUrl}/addUser`,params)
+  }
 }
