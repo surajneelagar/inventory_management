@@ -20,7 +20,7 @@
                 <div class="mat-select-scroll-container" (scroll)="onInventoryTableScroll($event)">
                   <mat-option *ngFor="let user of filteredAssignedToOptions" [value]="user.email">
                     <div class="user-option">
-                      {{ user.fullName }}
+                      {{ user.fullname }}
                       <span class="email-text">({{ user.email }})</span>
                     </div>
                   </mat-option>
