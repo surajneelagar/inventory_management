@@ -25,4 +25,9 @@ export class ApisService {
     console.log("params", params);
     return this._http.post(`${this.baseUrl}/addUser`,params)
   }
+
+  getUser(params: any) {
+    return this._http.get(`${this.baseUrl}/userList/${params}`);
+  }
+
 }

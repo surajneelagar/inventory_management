@@ -7,6 +7,8 @@ import { ImportExcelService } from '../../../services/import-excel.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { filter, debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { ApisService } from '../../../services/apis.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-assign-device',
@@ -29,11 +31,14 @@ export class AssignDeviceComponent implements OnInit, OnDestroy {
   private searchSubject = new Subject<string>();
   private searchQuery = '';
   private unsubscribe$ = new Subject<void>(); 
+  currentID: any;
 
   constructor(
     private _fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _importExcelService: ImportExcelService,
+    private _apisService: ApisService,
+    private _authService: AuthService,
     private _snackbar: MatSnackBar,
      private _dialogRef: MatDialogRef<AssignDeviceComponent>
   ) {
@@ -47,8 +52,16 @@ export class AssignDeviceComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getInventoryAssignment();
+    // this.getInventoryAssignment();
     this.setupSearch();
+    this._authService.getUserIdObservable().subscribe(userId => {
+        console.log("User ID from service:", userId);
+        this.currentID = userId
+    });
+    this._apisService.getUser(this.currentID).subscribe((data: any) => {
+      console.log(data); 
+      this.filteredAssignedToOptions = data
+    })
   }
 
   ngOnDestroy(): void {
