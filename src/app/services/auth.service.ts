@@ -7,7 +7,7 @@ import { logIn, signUp } from '../models/auth';
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl: string = 'http://localhost:8080';
+  private baseUrl: string = 'https://inventory-management-backend-a244.onrender.com';
 
   private userIdSubject = new BehaviorSubject<string | null>(localStorage.getItem('userId'));
   private tokenSubject = new BehaviorSubject<string | null>(localStorage.getItem('token'));
